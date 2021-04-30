@@ -18,7 +18,7 @@
             android:gravity="center_horizontal"
             android:text="Heading"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="#03A9F4"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="@id/ivImage"
             app:layout_constraintTop_toBottomOf="@id/ivImage"
-            android:textColor="@color/black"
+            android:textColor="#8BC34A"
             android:text="Author"
             />
 
@@ -50,10 +50,20 @@
             android:layout_marginHorizontal="25dp"
             android:text="Description"
             android:layout_marginTop="20dp"
-            android:textColor="@color/black"
+            android:textColor="#FF5722"
             android:textStyle="normal"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/ivImage" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/saveButton"
+            android:layout_marginHorizontal="25dp"
+            android:text="SAVE NEWS"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="@color/teal_200"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
