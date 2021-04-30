@@ -1,0 +1,102 @@
+package com.example.mynews2.activity
+
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import com.example.mynews2.R
+import kotlinx.android.synthetic.main.activity_menu.*
+import com.example.mynews2.extensions.showToast
+
+class MenuActivity : AppCompatActivity() {
+
+    private  var categoryValue = ""
+    private  var languageValue = ""
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_menu)
+
+        searchKeywordNews()
+
+
+    }
+
+
+    private fun searchKeywordNews() {
+        searchBTN.setOnClickListener(View.OnClickListener {
+            val customSearch=search_news.query.toString()
+            Toast.makeText(this,customSearch, Toast.LENGTH_SHORT).show()
+            val intentSearchBar=Intent(this,
+                MainActivity::class.java)
+            intentSearchBar.putExtra("keywords",customSearch)
+            intentSearchBar.putExtra("checkKeyword",true)
+            startActivity(intentSearchBar)
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        inflateLanguageDropDownData()
+        inflateCategoriesDropDownData()
+    }
+
+    private fun inflateCategoriesDropDownData() {
+        val categories = resources.getStringArray(R.array.categories)
+        val arrayAdapter = ArrayAdapter(applicationContext , R.layout.dropdown_item_categories, categories)
+        autoCompleteTextView_Categories.setAdapter(arrayAdapter)
+        autoCompleteTextView_Categories.setOnItemClickListener { parent, view, position, id ->
+
+            val categorySelected = parent.getItemAtPosition(position)
+            categoryValue = if (categorySelected.equals("")){
+                "general"
+            }else{
+                categorySelected.toString().toLowerCase()
+            }
+            val intentCategoryBar = Intent(this , MainActivity::class.java)
+            intentCategoryBar.putExtra("categories" , categoryValue)
+            intentCategoryBar.putExtra("checkCategory" , true)
+            startActivity(intentCategoryBar)
+            showToast("$categorySelected" + " News Category is Selected")
+        }
+
+    }
+
+    private fun inflateLanguageDropDownData() {
+        val languages = resources.getStringArray(R.array.languages)
+        val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item_languages, languages)
+        autoCompleteTextView_Languages.setAdapter(arrayAdapter)
+        autoCompleteTextView_Languages.setOnItemClickListener { parent, view, position, id ->
+            val languageSelected = parent.getItemAtPosition(position)
+            if (languageSelected.equals("")){
+                languageValue =  "en"
+            }else{
+                when (languageSelected){
+                    "Arabic" -> languageValue = "ar"
+                    "English" -> languageValue = "en"
+                    "German" -> languageValue = "de"
+                    "Spanish" -> languageValue = "es"
+                    "French" -> languageValue = "fr"
+                    "Hebrew" -> languageValue = "he"
+                    "Italian" -> languageValue = "it"
+                    "Dutch" -> languageValue = "nl"
+                    "Norwegian" -> languageValue = "no"
+                    "Portuguese" -> languageValue = "pt"
+                    "Russian" -> languageValue = "ru"
+                    "Swedish" -> languageValue = "se"
+                    "Chinese" -> languageValue = "zh"
+                }
+            }
+
+            val intentLanguageBar = Intent(this , MainActivity::class.java)
+            intentLanguageBar.putExtra("languages" , languageValue)
+            intentLanguageBar.putExtra("checkLanguage" , true)
+            startActivity(intentLanguageBar)
+            showToast("$languageSelected " + " Language is Selected")
+        }
+    }
+}
