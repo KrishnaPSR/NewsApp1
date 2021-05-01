@@ -30,8 +30,8 @@ class MenuActivity : AppCompatActivity() {
 
 
     private fun searchKeywordNews() {
-        searchBTN.setOnClickListener(View.OnClickListener {
-            val customSearch=search_news.query.toString()
+        btnSearch.setOnClickListener(View.OnClickListener {
+            val customSearch=news_search.query.toString()
             Toast.makeText(this,customSearch, Toast.LENGTH_SHORT).show()
             val intentSearchBar=Intent(this, MainActivity::class.java)
             intentSearchBar.putExtra("keywords",customSearch)

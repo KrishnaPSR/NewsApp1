@@ -10,12 +10,10 @@ import com.example.mynews2.model.ResponseDataModel
 
 import android.app.ProgressDialog
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -75,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        floatingActionButton.setOnClickListener {
+        floatingButton.setOnClickListener {
             showToast("Floating Button Clicked")
             startActivity(Intent(this , MenuActivity::class.java))
         }

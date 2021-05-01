@@ -65,6 +65,17 @@
             android:backgroundTint="@color/teal_200"
             app:layout_constraintTop_toBottomOf="@+id/tvDescription"/>
 
+        <Button
+            android:id="@+id/viewNewsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/teal_200"
+            android:text="VIEW NEWS"
+            app:layout_constraintTop_toBottomOf="@+id/saveButton"
+            tools:layout_editor_absoluteX="63dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

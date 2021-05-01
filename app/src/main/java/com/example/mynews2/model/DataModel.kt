@@ -1,8 +1,15 @@
 package com.example.mynews2.model
 
 import com.google.gson.annotations.SerializedName
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(
+        tableName = "datamodel"
+)
 
 data class DataModel(
+        @PrimaryKey(autoGenerate = true)
     @SerializedName("title")
     val title : String,
 
@@ -17,6 +24,7 @@ data class DataModel(
 
     @SerializedName("image")
     val image: String,
+
     @SerializedName("sources")
     val source: String,
 

@@ -8,23 +8,23 @@
     tools:context=".activity.MenuActivity">
 
     <SearchView
-        android:id="@+id/search_news"
+        android:id="@+id/news_search"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginRight="70sp"
         android:iconifiedByDefault="false"
         android:queryHint="Search Latest News"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.351"
+        app:layout_constraintHorizontal_bias="0.352"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@android:color/transparent"
         android:elevation="15dp"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.062" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/searchBTN"
+        android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search"
@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
         android:background="#CDDC39"
-        app:layout_constraintStart_toEndOf="@+id/search_news"
+        app:layout_constraintStart_toEndOf="@+id/news_search"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.052" />
 
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_news"
+        app:layout_constraintTop_toBottomOf="@+id/news_search"
         app:startIconDrawable="@drawable/ic_baseline_country_24">
 
         <AutoCompleteTextView
