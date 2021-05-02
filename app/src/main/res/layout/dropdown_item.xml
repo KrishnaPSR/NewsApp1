@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:text="TextView"
     android:padding="16dp"
-    android:textColor="#CDDC39"
+    android:textColor="#9C27B0"
     android:textSize="17dp"
     android:textStyle="bold"
     />

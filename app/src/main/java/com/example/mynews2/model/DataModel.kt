@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 )
 
 data class DataModel(
-        @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     @SerializedName("title")
     val title : String,
 

@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EF6C6C"
+    android:background="#57C5F6"
     tools:context=".activity.MenuActivity">
 
     <SearchView
         android:id="@+id/news_search"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="70sp"
+        android:layout_marginRight="72sp"
         android:iconifiedByDefault="false"
         android:queryHint="Search Latest News"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@android:color/transparent"
-        android:elevation="15dp"
+        android:elevation="16dp"
         app:layout_constraintVertical_bias="0.062" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -90,6 +90,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:id="@+id/textInputLayout_Category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
@@ -111,5 +112,31 @@
             android:inputType="none"
             android:text="GENERAL" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_Sources"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="SOURCE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_Category"
+        app:startIconDrawable="@drawable/ic_baseline_source_24">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView_Sources"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="CNN" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

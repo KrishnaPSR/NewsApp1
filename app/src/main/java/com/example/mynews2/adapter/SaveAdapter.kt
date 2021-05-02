@@ -1,54 +1,30 @@
 package com.example.mynews2.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.mynews2.R
-import com.example.mynews2.activity.NewsActivity
-import com.example.mynews2.db.NewsEntity
+import com.example.mynews2.db.SavedNews
+import com.example.mynews2.ui.newsview.NewsViewFragment
 
-
-class SaveAdapter(private val context: Context, private val dataList : List<NewsEntity>) : RecyclerView.Adapter<SaveAdapter.ViewHolder>() {
-    class ViewHolder(view : View): RecyclerView.ViewHolder(view) {
-
-        val title: TextView = view.findViewById(R.id.newsTitleTV)
-        val desc: TextView = view.findViewById(R.id.newsDescriptionTV)
-        val image: ImageView = view.findViewById(R.id.imageView)
-        val newsView: CardView = view.findViewById(R.id.cvNews)
+class SaveAdapter(private val context: NewsViewFragment, private val newsDataset: ArrayList<SavedNews>): RecyclerView.Adapter<SaveAdapter.ViewHolder>() {
+    class ViewHolder(view: View) :RecyclerView.ViewHolder(view) {
+        val savedNewsTitle: TextView = view.findViewById(R.id.savedNewsTitleTV)
+        val savedNewsDescription: TextView = view.findViewById(R.id.savedNewsDescriptionTV)
+        val savedNewsTime: TextView = view.findViewById(R.id.savedNewsPublishedTimeTV)
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.news_item,parent,false)
+        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.saved_news_item,parent,false)
         return ViewHolder(inflater)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            title.text = dataList[position].heading
-            desc.text = dataList[position].description
-
-            Glide.with(context)
-                .load(dataList[position].image)
-                .placeholder(R.drawable.no_image_available)
-                .into(image)
-
-            newsView.setOnClickListener{
-                val intent= Intent(context, NewsActivity::class.java)
-                intent.putExtra("newsTitile",dataList[position].heading)
-                intent.putExtra("newsDesc",dataList[position].description)
-                intent.putExtra("image",dataList[position].image)
-                intent.putExtra("author",dataList[position].author)
-                context.startActivity(intent)
-            }
+            savedNewsTitle.text = newsDataset[position].news_title
+            savedNewsDescription.text = newsDataset[position].news_desc
+            savedNewsTime.text = newsDataset[position].news_time
         }
     }
-
-    override fun getItemCount(): Int = dataList.size
+    override fun getItemCount(): Int = newsDataset.size
 }

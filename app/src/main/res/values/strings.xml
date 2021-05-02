@@ -78,6 +78,22 @@
         <item>Sports</item>
         <item>Technology</item>
     </string-array>
+    <string-array name="sources">
+        <item>CNN</item>
+        <item>BBC</item>
+        <item>BusinessToday</item>
+        <item>DailyMail</item>
+        <item>Mail</item>
+        <item>Metro</item>
+        <item>TheSun</item>
+        <item>XTraTime</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_web">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_newsView">News View</string>
+    <string name="title_notifications">Notifications</string>
 
 
 </resources>

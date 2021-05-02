@@ -7,23 +7,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
 
-    private const val BASE_URL = "http://api.mediastack.com/v1/"
-
+    private const val BASE_URL = "http://api.mediastack.com/v1/" //declaring base url of news media stack
     val getClient: ApiInterface
         get() {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
-
             val httpClient =  OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .build()
-
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-
             return retrofit.create(ApiInterface::class.java)
         }
 }

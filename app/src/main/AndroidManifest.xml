@@ -15,8 +15,9 @@
         android:theme="@style/Theme.MyNews2"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".activity.SaveActivity"></activity>
-        <activity android:name=".activity.NewsActivity" />
+        <activity
+            android:name=".activity.WebActivity"
+            android:label="@string/title_activity_web"></activity>
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
