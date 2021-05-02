@@ -21,8 +21,6 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
         searchKeywordNews()
-
-
     }
     private fun searchKeywordNews() {
         btnSearch.setOnClickListener(View.OnClickListener {
@@ -36,14 +34,46 @@ class MenuActivity : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        countriesDropDownData()
-        languageDropDownData()
-        categoriesDropDownData()
-        sourcesDropDownData()
+        inflateLanguageDropDownData()
+        inflateCountryDropDownData()
+        inflateCategoriesDropDownData()
+        inflateSourcesDropDownData()
     }
-    private fun countriesDropDownData() {
-        val countries = resources.getStringArray(R.array.countries)
-        val arrayAdapter = ArrayAdapter(applicationContext , R.layout.dropdown_item_country ,countries)
+    private fun inflateLanguageDropDownData() {
+        val languages = resources.getStringArray(R.array.languages)
+        val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item_languages, languages)
+        autoCompleteTextView_Languages.setAdapter(arrayAdapter)
+        autoCompleteTextView_Languages.setOnItemClickListener { parent, view, position, id ->
+            val languageSelected = parent.getItemAtPosition(position)
+            if (languageSelected.equals("")){
+                languageValue =  "en"
+            }else{
+                when (languageSelected){
+                    "Arabic" -> languageValue = "ar"
+                    "English" -> languageValue = "en"
+                    "German" -> languageValue = "ge"
+                    "Spanish" -> languageValue = "sp"
+                    "French" -> languageValue = "fr"
+                    "Hebrew" -> languageValue = "he"
+                    "Italian" -> languageValue = "it"
+                    "Dutch" -> languageValue = "du"
+                    "Norwegian" -> languageValue = "no"
+                    "Portuguese" -> languageValue = "pt"
+                    "Russian" -> languageValue = "ru"
+                    "Swedish" -> languageValue = "se"
+                    "Chinese" -> languageValue = "ch"
+                }
+            }
+            val intentLanguageBar = Intent(this , MainActivity::class.java)
+            intentLanguageBar.putExtra("languages" , languageValue)
+            intentLanguageBar.putExtra("checkLanguage" , true)
+            startActivity(intentLanguageBar)
+            showToast("$languageSelected " + " Language is Selected")
+        }
+    }
+    private fun inflateCountryDropDownData() {
+        val country = resources.getStringArray(R.array.country)
+        val arrayAdapter = ArrayAdapter(applicationContext , R.layout.dropdown_item_country ,country)
         /**
          * Android AutoCompleteTextView is a editable text field,
          * it displays a list of suggestions in a drop down menu
@@ -53,12 +83,12 @@ class MenuActivity : AppCompatActivity() {
         autoCompleteTextView_Country.setOnItemClickListener { parent, view, position, id ->
             val countrySelected = parent.getItemAtPosition(position)
             if (countrySelected.equals("")){
-                countryValue = "us"
+                countryValue = "in"
             }else{
                 when(countrySelected) {
                     "Argentina" -> countryValue = "ar"
                     "Australia" -> countryValue = "au"
-                    "Austria" -> countryValue = "at"
+                    "Austria" ->  countryValue = "at"
                     "Belgium" -> countryValue = "be"
                     "Brazil" -> countryValue = "br"
                     "Bulgaria" -> countryValue = "bg"
@@ -107,18 +137,18 @@ class MenuActivity : AppCompatActivity() {
                     "Ukraine" -> countryValue = "ua"
                     "United Kingdom" -> countryValue = "gb"
                     "United States" -> countryValue = "us"
-                    "Venuzuela" -> countryValue = "ve"
+                    "Venezuela" -> countryValue = "ve"
                 }
             }
             val intentCountryBar = Intent(this , MainActivity::class.java)
-            intentCountryBar.putExtra("countries" , countryValue)
+            intentCountryBar.putExtra("country" , countryValue)
             intentCountryBar.putExtra("checkCountry" , true)
             startActivity(intentCountryBar)
-            showToast("$countrySelected" + " Country is Selected") //here show toast is an extension function
+            showToast("$countrySelected" + "Country is Selected") //here show toast is an extension function
         }
 
     }
-    private fun categoriesDropDownData() {
+    private fun inflateCategoriesDropDownData() {
         val categories = resources.getStringArray(R.array.categories)
         val arrayAdapter = ArrayAdapter(applicationContext , R.layout.dropdown_item_categories, categories)
         autoCompleteTextView_Categories.setAdapter(arrayAdapter)
@@ -138,51 +168,34 @@ class MenuActivity : AppCompatActivity() {
         }
 
     }
-    private fun languageDropDownData() {
-        val languages = resources.getStringArray(R.array.languages)
-        val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item_languages, languages)
-        autoCompleteTextView_Languages.setAdapter(arrayAdapter)
-        autoCompleteTextView_Languages.setOnItemClickListener { parent, view, position, id ->
-            val languageSelected = parent.getItemAtPosition(position)
-            if (languageSelected.equals("")){
-                languageValue =  "en"
-            }else{
-                when (languageSelected){
-                    "Arabic" -> languageValue = "ar"
-                    "English" -> languageValue = "en"
-                    "German" -> languageValue = "de"
-                    "Spanish" -> languageValue = "es"
-                    "French" -> languageValue = "fr"
-                    "Hebrew" -> languageValue = "he"
-                    "Italian" -> languageValue = "it"
-                    "Dutch" -> languageValue = "nl"
-                    "Norwegian" -> languageValue = "no"
-                    "Portuguese" -> languageValue = "pt"
-                    "Russian" -> languageValue = "ru"
-                    "Swedish" -> languageValue = "se"
-                    "Chinese" -> languageValue = "zh"
-                }
-            }
-            val intentLanguageBar = Intent(this , MainActivity::class.java)
-            intentLanguageBar.putExtra("languages" , languageValue)
-            intentLanguageBar.putExtra("checkLanguage" , true)
-            startActivity(intentLanguageBar)
-            showToast("$languageSelected " + " Language is Selected")
-        }
-    }
-    private fun sourcesDropDownData() {
+    private fun inflateSourcesDropDownData() {
         val sources = resources.getStringArray(R.array.sources)
         val arrayAdapter = ArrayAdapter(applicationContext , R.layout.dropdown_item ,sources)
         autoCompleteTextView_Sources.setAdapter(arrayAdapter)
         autoCompleteTextView_Sources.setOnItemClickListener { parent, view, position, id ->
             val sourceSelected = parent.getItemAtPosition(position)
-            sourceValue = sourceSelected.toString().toLowerCase()
+            //sourceValue = sourceSelected.toString().toLowerCase()
+            sourceValue=if (sourceSelected.equals("")) {
+                    "cnn"
+            }else{
+                sourceSelected.toString().toLowerCase()
+               /* when(sourceSelected){
+                        "CNN" ->sourceValue= "cn"
+                        "BBC"->sourceValue= "bb"
+                        "BusinessToday"->sourceValue= "bt"
+                        "DailyMail"->sourceValue= "dm"
+                        "Mail"->sourceValue="ma"
+                        "Metro"->sourceValue="me"
+                        "TheSun"->sourceValue="ts"
+                        "XTraTime"->sourceValue="xt"
+
+                }*/
+            }
             val intentSourceBar = Intent(this , MainActivity::class.java)
             intentSourceBar.putExtra("sources" , sourceValue)
             intentSourceBar.putExtra("checkSource" , true)
             startActivity(intentSourceBar)
             showToast("$sourceSelected" + "Source of News is Selected")
-
         }
     }
 }

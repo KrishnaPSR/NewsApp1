@@ -47,7 +47,7 @@ language bar
 category bar
  */
     @GET("news")
-    fun getCategorisedData(
+    fun getCategoryData(
         @Query("access_key") key : String,
         @Query("languages") lang: String,
         @Query("categories") categories: String

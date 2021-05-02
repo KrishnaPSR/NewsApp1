@@ -14,12 +14,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="220dp"
         android:id="@+id/cv"
         app:cardElevation="10dp"
-        app:cardCornerRadius="50dp"
         android:layout_margin="7dp"
-        android:backgroundTint="#FFEB3B"
+        android:backgroundTint="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -48,8 +47,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="134dp"
-                android:layout_height="156dp"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.156"
@@ -59,14 +58,14 @@
 
             <TextView
                 android:id="@+id/newsDescriptionTV"
-                android:layout_width="180dp"
-                android:layout_height="157dp"
+                android:layout_width="120dp"
+                android:layout_height="94dp"
                 android:gravity="center"
                 android:hint="News Description"
                 android:textColor="#2196F3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.282"
+                app:layout_constraintHorizontal_bias="0.200"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/newsTitleTV"
                 app:layout_constraintVertical_bias="0.444" />
@@ -86,14 +85,15 @@
 
             <TextView
                 android:id="@+id/publishedTimeTV"
-                android:layout_width="195dp"
+                android:layout_width="150dp"
                 android:layout_height="20dp"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:textSize="12sp"
-                android:textStyle="bold"
                 android:textColor="#9C27B0"
+                android:textSize="10sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.921"
+                app:layout_constraintHorizontal_bias="0.688"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newsDescriptionTV" />
         </androidx.constraintlayout.widget.ConstraintLayout>

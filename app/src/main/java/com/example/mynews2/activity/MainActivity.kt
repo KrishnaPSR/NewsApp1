@@ -45,12 +45,6 @@ class MainActivity : AppCompatActivity() {
                 showSearchNews()
 
             }
-            bundleSearch.getBooleanExtra("checkCountry" ,  false) ->{
-                countryBar = bundleSearch.getStringExtra("countries").toString()
-                createProgressDialog()
-                setupUI()
-                showCountryWiseNews()
-            }
             bundleSearch.getBooleanExtra("checkLanguage" , false) -> {
                 languageBar = bundleSearch.getStringExtra("languages").toString()
                 createProgressDialog()
@@ -61,7 +55,13 @@ class MainActivity : AppCompatActivity() {
                 categoryBar = bundleSearch.getStringExtra("categories").toString()
                 createProgressDialog()
                 setupUI()
-                showCategorisedNews()
+                showCategoryWiseNews()
+            }
+            bundleSearch.getBooleanExtra("checkCountry" ,  false) ->{
+                countryBar = bundleSearch.getStringExtra("country").toString()
+                createProgressDialog()
+                setupUI()
+                showCountryWiseNews()
             }
             bundleSearch.getBooleanExtra("checkSource" ,  false) ->{
                 sourceBar = bundleSearch.getStringExtra("sources").toString()
@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity() {
          * attaching click listener on floating icon
          */
         floatingButton.setOnClickListener {
-            showToast("You Clicked Floating Button")
             startActivity(Intent(this , MenuActivity::class.java))
         }
     }
@@ -105,8 +104,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-
     private fun showLanguageWiseNews() {
         progressDialog.show()
         val call = ApiClient.getClient.getLanguageData(KEY , languageBar )
@@ -131,10 +128,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-    private fun showCategorisedNews() {
+    private fun showCategoryWiseNews() {
         progressDialog.show()
-        val call = ApiClient.getClient.getCategorisedData(KEY , "en" , categoryBar )
+        val call = ApiClient.getClient.getCategoryData(KEY , "en" , categoryBar )
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
                 call: Call<ResponseDataModel>,
