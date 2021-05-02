@@ -12,6 +12,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 showLanguageWiseNews()
             }
             bundleSearch.getBooleanExtra("checkCategory" , false) -> {
-                categoryBar = bundleSearch.getStringExtra("categories").toString()
+                categoryBar = bundleSearch.getStringExtra("category").toString()
                 createProgressDialog()
                 setupUI()
                 showCategoryWiseNews()
@@ -119,7 +120,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 progressDialog.dismiss()
                 shimmer.visibility = View.GONE
-                clMain.visibility = View.VISIBLE
             }
             override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
                 progressDialog.dismiss()
@@ -143,7 +143,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 progressDialog.dismiss()
                 shimmer.visibility = View.GONE
-                clMain.visibility = View.VISIBLE
             }
 
             override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
@@ -169,7 +168,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 progressDialog.dismiss()
                 shimmer.visibility = View.GONE
-                clMain.visibility = View.VISIBLE
             }
             override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
                 progressDialog.dismiss()
@@ -190,7 +188,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showNews() {
         progressDialog.show()
-        val call = ApiClient.getClient.getData(KEY, LANGUAGE )
+        val call = ApiClient.getClient.getData(KEY, LANGUAGE,"us")
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
                 call: Call<ResponseDataModel>,
@@ -203,7 +201,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 progressDialog.dismiss()
                 shimmer.visibility = View.GONE
-                clMain.visibility = View.VISIBLE
             }
             override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
                 progressDialog.dismiss()
